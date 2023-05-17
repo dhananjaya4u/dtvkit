@@ -1,10 +1,19 @@
 const submitButton = document.getElementById("submitButton");
+
 submitButton.addEventListener("click", function(event) {
+  // Prevent the default form submission behavior
   event.preventDefault();
+
+  // Get the input field elements
+  const accountNumberInput = document.getElementById("accountNumber");
+  const reloadCardInput = document.getElementById("reload-card");
   
-  const accountNumber = document.getElementById("accountNumber").value;
-  const reloadCard = document.getElementById("reload-card").value;
-  const ussdCode = `*679*4*${accountNumber}*${reloadCard}%23`;
+  // Get the values from the input fields
+  const accountNumber = accountNumberInput.value;
+  const reloadCard = reloadCardInput.value;
   
-  window.location.href = `tel:${ussdCode}`;
+  // Construct the USSD code
+  const ussdCode = `tel:*679*4*${accountNumber}*${reloadCard}#`;
+  
+  window.location.href = ussdCode;
 });
